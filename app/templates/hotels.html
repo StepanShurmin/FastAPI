@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои бронирования</title>
+</head>
+<body>
+<div>
+    {% if hotels %}
+    {% for hotel in hotels %}
+    <div style="display:flex; margin-bottom: 15px; margin-left: 200px;">
+        <img src="{{url_for('static', path='images/' + hotel.image_id|string + '.webp')}}" alt="Фото отеля" width="200">
+        <div>
+            <h1>{{hotel.name}}</h1>
+            <h4>{{hotel.location}}</h4>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Нет доступных отелей</p>
+    {% endif %}
+</div>
+
+
+</body>
+</html>
