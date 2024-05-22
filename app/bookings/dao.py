@@ -6,7 +6,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from app.bookings.models import Bookings
 from app.dao.base import BaseDAO
 from app.database import async_session_maker
-from app.exceptions import RoomFullyBooked
+from app.exceptions import RoomFullyBookedException
 from app.hotels.models import Rooms
 from app.logger import logger
 
@@ -118,9 +118,9 @@ class BookingDAO(BaseDAO):
                     await session.commit()
                     return new_booking.mappings().one()
                 else:
-                    raise RoomFullyBooked
-        except RoomFullyBooked:
-            raise RoomFullyBooked
+                    raise RoomFullyBookedException
+        except RoomFullyBookedException:
+            raise RoomFullyBookedException
         except (SQLAlchemyError, Exception) as e:
             if isinstance(e, SQLAlchemyError):
                 msg = "Database Exc: Cannot add booking"

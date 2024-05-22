@@ -19,12 +19,17 @@ class SBookings(BaseModel):
 
 
 class SBookingsInfo(BaseModel):
+    image_id: int
     hotel_name: str
     room_name: str
     room_description: Optional[str]
     room_services: list[str]
-    date_from: date
-    date_to: date
 
     class Config:
         from_attributes = True
+
+
+class SNewBooking(BaseModel):
+    room_id: int
+    date_from: date
+    date_to: date
