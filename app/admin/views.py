@@ -6,7 +6,7 @@ from app.users.models import Users
 
 
 class UsersAdmin(ModelView, model=Users):
-    column_list = [Users.id, Users.email]
+    column_list = [Users.id, Users.email, Users.booking]
     column_details_exclude_list = [Users.hashed_password]
     can_delete = False
     name = "Пользователь"
