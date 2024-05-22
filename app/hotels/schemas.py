@@ -1,7 +1,13 @@
-class HotelInfo:
+from typing import List
+
+from pydantic import BaseModel
+
+
+class SHotel(BaseModel):
     id: int
     name: str
     location: str
+    services: List[str]
     rooms_quantity: int
     image_id: int
 
@@ -9,15 +15,8 @@ class HotelInfo:
         from_attributes = True
 
 
-class RoomInfo:
-    id: int
-    hotel_id: int
-    name: str
-    description: str
-    price: int
-
-    quantity: int
-    image_id: int
+class SHotelInfo(SHotel):
+    rooms_left: int
 
     class Config:
         from_attributes = True

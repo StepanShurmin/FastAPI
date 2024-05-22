@@ -5,11 +5,11 @@ from sqlalchemy import and_, func, or_, select
 from app.bookings.models import Bookings
 from app.dao.base import BaseDAO
 from app.database import async_session_maker
-from app.hotels.models import Hotels, Rooms
+from app.hotels.rooms.models import Rooms
 
 
-class HotelDAO(BaseDAO):
-    model = Hotels
+class RoomDAO(BaseDAO):
+    model = Rooms
 
     @classmethod
     async def find_all(cls, hotel_id: int, date_from: date, date_to: date):
