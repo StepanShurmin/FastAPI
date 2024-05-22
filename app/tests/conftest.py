@@ -10,7 +10,8 @@ from sqlalchemy import insert
 from app.bookings.models import Bookings
 from app.config import settings
 from app.database import Base, async_session_maker, engine
-from app.hotels.models import Hotels, Rooms
+from app.hotels.models import Hotels
+from app.hotels.rooms.models import Rooms
 from app.main import app as fastapi_app
 from app.users.models import Users
 
@@ -66,9 +67,7 @@ async def ac():
 @pytest.fixture(scope="session")
 async def authenticated_ac():
     async with AsyncClient(app=fastapi_app, base_url="http://test") as ac:
-        await ac.post(
-            "/auth/login", json={"email": "test1@example.com", "password": "test1"}
-        )
+        await ac.post("/auth/login", json={"email": "test1@example.com", "password": "test1"})
         assert ac.cookies["booking_access_token"]
         yield ac
 

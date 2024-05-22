@@ -7,7 +7,7 @@ from app.bookings.models import Bookings
 from app.dao.base import BaseDAO
 from app.database import async_session_maker
 from app.exceptions import RoomFullyBookedException
-from app.hotels.models import Rooms
+from app.hotels.rooms.models import Rooms
 from app.logger import logger
 
 
