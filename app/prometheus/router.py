@@ -21,5 +21,5 @@ def time_consumer():
 
 @router.get("/memory_consumer")
 def memory_consumer():
-    _ = [i for i in range(10_000_000)]
+    _ = [i for i in range(50_000_000)]
     return 1

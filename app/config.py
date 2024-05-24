@@ -13,12 +13,15 @@ class Settings(BaseSettings):
     DB_PASS: str
     DB_NAME: str
 
-    @root_validator
-    def get_database_url(cls, v):
-        v["DATABASE_URL"] = (
-            f"postgresql+asyncpg://{v['DB_USER']}:{v['DB_PASS']}@{v['DB_HOST']}:{v['DB_PORT']}/{v['DB_NAME']}"
-        )
-        return v
+    # @root_validator
+    # def get_database_url(cls, v):
+    #     v["DATABASE_URL"] = (
+    #         f"postgresql+asyncpg://{v['DB_USER']}:{v['DB_PASS']}@{v['DB_HOST']}:{v['DB_PORT']}/{v['DB_NAME']}"
+    #     )
+    #     return v
+    @property
+    def DATABASE_URL(self):
+        return f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
 
     T_DB_HOST: str
     T_DB_PORT: int
@@ -26,12 +29,18 @@ class Settings(BaseSettings):
     T_DB_PASS: str
     T_DB_NAME: str
 
-    @root_validator
-    def get_test_database_url(cls, v):
-        v["T_DATABASE_URL"] = (
-            f"postgresql+asyncpg://{v['T_DB_USER']}:{v['T_DB_PASS']}@{v['T_DB_HOST']}:{v['T_DB_PORT']}/{v['T_DB_NAME']}"
+    # @root_validator
+    # def get_test_database_url(cls, v):
+    #     v["T_DATABASE_URL"] = (
+    #         f"postgresql+asyncpg://{v['T_DB_USER']}:{v['T_DB_PASS']}@{v['T_DB_HOST']}:{v['T_DB_PORT']}/{v['T_DB_NAME']}"
+    #     )
+    #     return v
+
+    @property
+    def T_DATABASE_URL(self):
+        return (
+            f"postgresql+asyncpg://{self.T_DB_USER}:{self.T_DB_PASS}@{self.T_DB_HOST}:{self.T_DB_PORT}/{self.T_DB_NAME}"
         )
-        return v
 
     SMTP_HOST: str
     SMTP_PORT: int

@@ -17,7 +17,7 @@ class CustomJsonFormatter(jsonlogger.JsonFormatter):
             now = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
             log_record["timestamp"] = now
             if log_record.get("level"):
-                log_record["level"] = log_record.get["level"].upper()
+                log_record["level"] = log_record["level"].upper()
             else:
                 log_record["level"] = record.levelname
 
